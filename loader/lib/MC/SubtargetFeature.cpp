@@ -11,12 +11,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/MC/SubtargetFeature.h"
-#include "include/ADT/ArrayRef.h"
-#include "include/ADT/StringExtras.h"
-#include "include/Support/Debug.h"
-#include "include/Support/Format.h"
-#include "include/Support/raw_ostream.h"
+#include "llvm/MC/SubtargetFeature.h"
+#include "llvm/ADT/ArrayRef.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/Support/Debug.h"
+#include "llvm/Support/Format.h"
+#include "llvm/Support/raw_ostream.h"
 #include <algorithm>
 #include <cassert>
 #include <cctype>

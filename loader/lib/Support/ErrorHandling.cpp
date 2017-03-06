@@ -12,27 +12,27 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Support/ErrorHandling.h"
-#include "include/ErrorHandling.h"
-#include "include/ADT/SmallVector.h"
-#include "include/ADT/Twine.h"
-//#include "include/Config/config.h"
-#include "include/Support/Debug.h"
-#include "include/Support/Errc.h"
-#include "include/Support/Error.h"
-#include "include/Support/ManagedStatic.h"
-#include "include/Support/Mutex.h"
-#include "include/Support/MutexGuard.h"
-#include "include/Support/Signals.h"
-#include "include/Support/Threading.h"
-#include "include/Support/WindowsError.h"
-#include "include/Support/raw_ostream.h"
+#include "llvm/Support/ErrorHandling.h"
+#include "llvm-c/ErrorHandling.h"
+#include "llvm/ADT/SmallVector.h"
+#include "llvm/ADT/Twine.h"
+#include "llvm/Config/config.h"
+#include "llvm/Support/Debug.h"
+#include "llvm/Support/Errc.h"
+#include "llvm/Support/Error.h"
+#include "llvm/Support/ManagedStatic.h"
+#include "llvm/Support/Mutex.h"
+#include "llvm/Support/MutexGuard.h"
+#include "llvm/Support/Signals.h"
+#include "llvm/Support/Threading.h"
+#include "llvm/Support/WindowsError.h"
+#include "llvm/Support/raw_ostream.h"
 #include <cassert>
 #include <cstdlib>
 
-//#if defined(HAVE_UNISTD_H)
+#if defined(HAVE_UNISTD_H)
 # include <unistd.h>
-//#endif
+#endif
 #if defined(_MSC_VER)
 # include <io.h>
 # include <fcntl.h>

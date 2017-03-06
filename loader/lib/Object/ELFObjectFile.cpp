@@ -11,8 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/ELFObjectFile.h"
-#include "include/Support/MathExtras.h"
+#include "llvm/Object/ELFObjectFile.h"
+#include "llvm/Support/MathExtras.h"
 
 namespace llvm {
 using namespace object;

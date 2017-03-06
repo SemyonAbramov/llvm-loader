@@ -11,9 +11,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/Error.h"
-#include "include/Support/ErrorHandling.h"
-#include "include/Support/ManagedStatic.h"
+#include "llvm/Object/Error.h"
+#include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/ManagedStatic.h"
 
 using namespace llvm;
 using namespace object;

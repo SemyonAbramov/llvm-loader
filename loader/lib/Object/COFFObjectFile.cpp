@@ -11,14 +11,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/COFF.h"
-#include "include/ADT/ArrayRef.h"
-#include "include/ADT/StringSwitch.h"
-#include "include/ADT/Triple.h"
-#include "include/ADT/iterator_range.h"
-#include "include/Support/COFF.h"
-#include "include/Support/Debug.h"
-#include "include/Support/raw_ostream.h"
+#include "llvm/Object/COFF.h"
+#include "llvm/ADT/ArrayRef.h"
+#include "llvm/ADT/StringSwitch.h"
+#include "llvm/ADT/Triple.h"
+#include "llvm/ADT/iterator_range.h"
+#include "llvm/Support/COFF.h"
+#include "llvm/Support/Debug.h"
+#include "llvm/Support/raw_ostream.h"
 #include <cctype>
 #include <limits>
 

@@ -7,10 +7,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Support/Error.h"
-#include "include/ADT/Twine.h"
-#include "include/Support/ErrorHandling.h"
-#include "include/Support/ManagedStatic.h"
+#include "llvm/Support/Error.h"
+#include "llvm/ADT/Twine.h"
+#include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/ManagedStatic.h"
 
 
 using namespace llvm;

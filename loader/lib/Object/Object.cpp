@@ -12,9 +12,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/ADT/SmallVector.h"
-#include "include/Object.h"
-#include "include/Object/ObjectFile.h"
+#include "llvm/ADT/SmallVector.h"
+#include "llvm-c/Object.h"
+#include "llvm/Object/ObjectFile.h"
 
 using namespace llvm;
 using namespace object;

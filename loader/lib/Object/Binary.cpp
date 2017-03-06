@@ -11,16 +11,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/Binary.h"
-#include "include/ADT/StringRef.h"
-#include "include/Support/FileSystem.h"
-#include "include/Support/MemoryBuffer.h"
-#include "include/Support/Path.h"
+#include "llvm/Object/Binary.h"
+#include "llvm/ADT/StringRef.h"
+#include "llvm/Support/FileSystem.h"
+#include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/Path.h"
 
 // Include headers for createBinary.
-#include "include/Object/Archive.h"
-#include "include/Object/MachOUniversal.h"
-#include "include/Object/ObjectFile.h"
+#include "llvm/Object/Archive.h"
+#include "llvm/Object/MachOUniversal.h"
+#include "llvm/Object/ObjectFile.h"
 
 using namespace llvm;
 using namespace object;

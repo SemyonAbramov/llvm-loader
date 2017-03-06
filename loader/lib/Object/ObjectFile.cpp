@@ -11,13 +11,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/COFF.h"
-#include "include/Object/MachO.h"
-#include "include/Object/ObjectFile.h"
-#include "include/Support/ErrorHandling.h"
-#include "include/Support/FileSystem.h"
-#include "include/Support/MemoryBuffer.h"
-#include "include/Support/raw_ostream.h"
+#include "llvm/Object/COFF.h"
+#include "llvm/Object/MachO.h"
+#include "llvm/Object/ObjectFile.h"
+#include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/FileSystem.h"
+#include "llvm/Support/MemoryBuffer.h"
+#include "llvm/Support/raw_ostream.h"
 #include <system_error>
 
 using namespace llvm;

@@ -11,12 +11,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Object/COFF.h"
-#include "include/Object/COFFImportFile.h"
-#include "include/Object/IRObjectFile.h"
-#include "include/Object/ObjectFile.h"
-#include "include/Object/SymbolicFile.h"
-#include "include/Support/MemoryBuffer.h"
+#include "llvm/Object/COFF.h"
+#include "llvm/Object/COFFImportFile.h"
+#include "llvm/Object/IRObjectFile.h"
+#include "llvm/Object/ObjectFile.h"
+#include "llvm/Object/SymbolicFile.h"
+#include "llvm/Support/MemoryBuffer.h"
 
 using namespace llvm;
 using namespace object;

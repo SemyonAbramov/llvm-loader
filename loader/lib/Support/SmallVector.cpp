@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/ADT/SmallVector.h"
+#include "llvm/ADT/SmallVector.h"
 using namespace llvm;
 
 /// grow_pod - This is an implementation of the grow() method which only works

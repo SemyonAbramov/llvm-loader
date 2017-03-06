@@ -11,31 +11,31 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "include/Support/raw_ostream.h"
-#include "include/ADT/STLExtras.h"
-#include "include/ADT/SmallVector.h"
-#include "include/ADT/StringExtras.h"
-// #include "include/Config/config.h"
-#include "include/Support/Compiler.h"
-#include "include/Support/ErrorHandling.h"
-#include "include/Support/FileSystem.h"
-#include "include/Support/Format.h"
-#include "include/Support/MathExtras.h"
-#include "include/Support/Process.h"
-#include "include/Support/Program.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/ADT/STLExtras.h"
+#include "llvm/ADT/SmallVector.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/Config/config.h"
+#include "llvm/Support/Compiler.h"
+#include "llvm/Support/ErrorHandling.h"
+#include "llvm/Support/FileSystem.h"
+#include "llvm/Support/Format.h"
+#include "llvm/Support/MathExtras.h"
+#include "llvm/Support/Process.h"
+#include "llvm/Support/Program.h"
 #include <cctype>
 #include <cerrno>
 #include <sys/stat.h>
 #include <system_error>
 
 // <fcntl.h> may provide O_BINARY.
-//#if defined(HAVE_FCNTL_H)
+#if defined(HAVE_FCNTL_H)
 # include <fcntl.h>
-//#endif
+#endif
 
-//#if defined(HAVE_UNISTD_H)
+#if defined(HAVE_UNISTD_H)
 # include <unistd.h>
-//#endif
+#endif
 #if defined(HAVE_SYS_UIO_H) && defined(HAVE_WRITEV)
 #  include <sys/uio.h>
 #endif
