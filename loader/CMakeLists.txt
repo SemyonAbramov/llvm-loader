@@ -30,9 +30,12 @@ list (APPEND DIR_LIST
 
 	llvm-c
 	
+	Analysis
+	Bitcode
 	IR
 	MC
 	Object
+	ProfileData
 	Support
 )
 
