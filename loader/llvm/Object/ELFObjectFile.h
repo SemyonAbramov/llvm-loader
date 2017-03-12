@@ -755,7 +755,7 @@ ELFObjectFile<ELFT>::ELFObjectFile(MemoryBufferRef Object, std::error_code &EC)
           Object),
       EF(Data.getBuffer(), EC) {
   if (EC)
-    return;
+     return; 
   for (const Elf_Shdr &Sec : EF.sections()) {
     switch (Sec.sh_type) {
     case ELF::SHT_DYNSYM: {

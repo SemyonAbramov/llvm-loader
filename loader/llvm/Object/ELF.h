@@ -343,6 +343,8 @@ ELFFile<ELFT>::ELFFile(StringRef Object, std::error_code &EC)
     return;
   }
 
+  const char* dat = Buf.data();
+
   Header = reinterpret_cast<const Elf_Ehdr *>(base());
 
   if (Header->e_shoff == 0)
@@ -390,7 +392,7 @@ static bool compareAddr(uint64_t VAddr, const Elf_Phdr_Impl<ELFT> *Phdr) {
 
 template <class ELFT>
 const typename ELFFile<ELFT>::Elf_Shdr *ELFFile<ELFT>::section_begin() const {
-  if (Header->e_shentsize != sizeof(Elf_Shdr))
+   if (Header->e_shentsize != sizeof(Elf_Shdr))
     report_fatal_error(
         "Invalid section header entry size (e_shentsize) in ELF header");
   return reinterpret_cast<const Elf_Shdr *>(base() + Header->e_shoff);
