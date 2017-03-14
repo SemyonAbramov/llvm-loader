@@ -83,13 +83,14 @@ unsigned searchMain(const object::ELFFile<object::ELFType<support::little, false
 	for (int j = 0; j < entities_num; j++) {
 		StringRef sym_name = getSymbolName(elf->getSymbol(&(dynsym_section), j), strtab);
 		
-		if (!strcmp(main_name, sym_name.data()))		
-			return j;	
+		if (!strcmp(main_name, sym_name.data())) {
+			printf("entry point: %llx\n", (elf->getSymbol(&(dynsym_section), j))->st_value);			
+			return j;
+		}		
+				
 	}
-
-
+	
 	return -1;
-
 }
 
 int main(int argc, char** argv)
@@ -145,7 +146,6 @@ int main(int argc, char** argv)
 */
 
 	printf("main entry: %d\n", searchMain(elf));
-
 
 	printf("ELF 64 Loader Success !!!\n");
 
