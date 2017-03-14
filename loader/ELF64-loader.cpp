@@ -24,6 +24,73 @@
 using namespace std;
 using namespace llvm;
 
+object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr getSection(const object::ELFFile<object::ELFType<support::little, false>>* elf, unsigned section_name)
+{
+	uint64_t num_of_sections = elf->getNumSections();
+
+//	printf("Required section name: %ld\n", static_cast<uint64_t>(section_name));
+//	printf("Num of sectons: %ld\n", num_of_sections);
+
+	for (int i = 0; i < num_of_sections; i++) {
+//		printf("sh type: %ld\n", ((elf->sections())[i]).sh_type);
+		if (((elf->sections())[i]).sh_type == section_name)
+			return (elf->sections())[i];
+	}	
+
+	printf("Required section was not found\n");
+	abort();
+}
+
+StringRef getStrtab(const object::ELFFile<object::ELFType<support::little, false>>* elf, const object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr* Section)
+{
+	ErrorOr<StringRef> strtab = elf->getStringTable(Section);
+	
+	if (strtab.getError()) {
+		printf("Strtab was not found.\n Error occured !!! \n"); 	
+		abort();
+	}
+
+	StringRef storage = strtab.get();
+
+	return storage;
+}
+
+StringRef getSymbolName(const object::ELFFile<object::ELFType<support::little, false>>::Elf_Sym* symbol, StringRef strtab)
+{
+	Expected<StringRef> name = symbol->getName(strtab);
+
+	if (!name)
+		printf("error\n");
+	
+	StringRef sym_name = name.get();	
+
+	return sym_name;
+}
+
+unsigned searchMain(const object::ELFFile<object::ELFType<support::little, false>>* elf)
+{
+	const char* main_name = "main";
+
+	uint64_t num_of_sections = elf->getNumSections();
+
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr dynsym_section = getSection(elf, SHT_DYNSYM);
+
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr strt = getSection(elf, SHT_STRTAB);
+	StringRef strtab = getStrtab(elf, &strt);
+
+	unsigned entities_num = dynsym_section.getEntityCount();
+
+	for (int j = 0; j < entities_num; j++) {
+		StringRef sym_name = getSymbolName(elf->getSymbol(&(dynsym_section), j), strtab);
+		
+		if (!strcmp(main_name, sym_name.data()))		
+			return j;	
+	}
+
+
+	return -1;
+
+}
 
 int main(int argc, char** argv)
 {
@@ -61,45 +128,24 @@ int main(int argc, char** argv)
 	object::ELFObjectFile<object::ELFType<support::little, false>> elffile(membuf, EC);
 	const object::ELFFile<object::ELFType<support::little, false>> *elf = elffile.getELFFile();
 
-//	printf("value: %lx\n", (elf->getSymbol((&(elf->sections())[2]), 3))->getValue());
+/*
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr shdr = getSection(elf, SHT_DYNSYM);
 
-	ErrorOr<StringRef> strtab = elf->getStringTable((&(elf->sections())[3]));
-	
-	if (strtab.getError())
-		printf("error %d\n", strtab.getError()); 	
+	printf("entities: %d\n", shdr.getEntityCount());
 
-	StringRef storage = strtab.get();
+	printf("value: %lx\n", (elf->getSymbol(&(shdr), 3))->getValue());
 
-	Expected<StringRef> name = (elf->getSymbol((&(elf->sections())[2]), 3))->getName(storage);
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr strt = getSection(elf, SHT_STRTAB);
 
-	if (! name)
-		printf("error\n");
-	
-	StringRef hname = name.get();
+	StringRef strtab = getStrtab(elf, &strt);
 
+	StringRef sym_name = getSymbolName(elf->getSymbol(&(shdr), 3), strtab);
 
-	printf("name: %s\n", hname.data());
+	printf("sym_name: %s\n", sym_name.data());
+*/
 
- 	uint64_t numsec = elf->getNumSections();
- 	printf("numsec: %ld\n", numsec);
+	printf("main entry: %d\n", searchMain(elf));
 
-
-//	object::elf_symbol_iterator iter = elffile.dynamic_symbol_begin();  
-//	++iter;
-//	const object::ELFSymbolRef* ref = iter.operator->();
-//	const object::BasicSymbolRef* ref = iter.operator->();
-//	llvm::raw_ostream &os();
-//	raw_ostream OS;
-//	std::error_code cd = ref->printName(OS);
-//	printf("size: %lld\n", ref->getSize());
-//	Expected<StringRef> st = ref->getName();
-//	printf("name: %s\n", st.data());
-//	object::ELFSymbolRef* ref = new object::ELFSymbolRef(iter);
-//	object::ELFSymbolRef sym(iter->());
-
-	unsigned arch = elffile.getArch();
-
-	printf("arch: %d\n", arch);
 
 	printf("ELF 64 Loader Success !!!\n");
 
