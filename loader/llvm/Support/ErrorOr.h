@@ -168,6 +168,18 @@ public:
 
   std::error_code getError() const {
     return HasError ? *getErrorStorage() : std::error_code();
+/*      
+      if (HasError)
+      {
+        printf("getErrorCode\n");
+        return *getErrorStorage();         
+      }
+      else
+      {
+        printf("error code\n");
+        return std::error_code(); 
+      }
+*/
   }
 
   pointer operator ->() {

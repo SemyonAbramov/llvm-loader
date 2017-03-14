@@ -689,13 +689,13 @@ public:
 
   /// \brief Returns a reference to the stored T value.
   reference get() {
-    assertIsChecked();
+    //assertIsChecked();
     return *getStorage();
   }
 
   /// \brief Returns a const reference to the stored T value.
   const_reference get() const {
-    assertIsChecked();
+    //assertIsChecked();
     return const_cast<Expected<T> *>(this)->get();
   }
 
