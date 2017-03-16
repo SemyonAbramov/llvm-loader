@@ -23,20 +23,24 @@ endif (UNIX_HOST)
 list (APPEND DIR_LIST
 	llvm/ADT
 	llvm/Config
+	llvm/ExecutionEngine
 	llvm/MC
 	llvm/Object			
 	llvm/Support
-
+	llvm/Target
 
 	llvm-c
 	
 	Analysis
 	Bitcode
+	ExecutionEngine
 	IR
 	MC
 	Object
 	ProfileData
 	Support
+	Target
+	ExecutionEngine/RuntimeDyld
 )
 
 add_definitions(-std=c++11)

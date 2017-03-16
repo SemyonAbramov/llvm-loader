@@ -84,10 +84,9 @@ unsigned searchMain(const object::ELFFile<object::ELFType<support::little, false
 		StringRef sym_name = getSymbolName(elf->getSymbol(&(dynsym_section), j), strtab);
 		
 		if (!strcmp(main_name, sym_name.data())) {
-			printf("entry point: %llx\n", (elf->getSymbol(&(dynsym_section), j))->st_value);			
+			printf("entry point: %x\n", static_cast<uint32_t>((elf->getSymbol(&(dynsym_section), j))->st_value));			
 			return j;
-		}		
-				
+		}	
 	}
 	
 	return -1;
@@ -146,6 +145,14 @@ int main(int argc, char** argv)
 */
 
 	printf("main entry: %d\n", searchMain(elf));
+
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Shdr dynamic = getSection(elf, SHT_REL);	
+
+	object::ELFFile<object::ELFType<support::little, false>>::Elf_Rel reloc = (elf->rels(&dynamic))[0];
+
+	printf("rel offset: %x\n", static_cast<uint32_t>(reloc.r_offset));
+	printf("rel info: %x\n", static_cast<uint32_t>(reloc.r_info));
+
 
 	printf("ELF 64 Loader Success !!!\n");
 
